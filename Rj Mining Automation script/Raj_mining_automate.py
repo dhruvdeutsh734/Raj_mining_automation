@@ -1,6 +1,7 @@
 from playwright.sync_api import sync_playwright
 from playwright.sync_api import expect
 import openpyxl as xl
+import subprocess
 import re
 workbook = xl.load_workbook("RAJ_MINING_DEVICES.xlsx")
 sheet = workbook["Sheet1"]
@@ -123,6 +124,8 @@ with sync_playwright() as p:
         
         else:
             print("imei is already registered")
+    subprocess.run(["python","rj_Mining_dp.py"])
+    print("data is pushed in rajasthan mining portal after registering device")
     input("Enter to close ")
     browser.close()
 # 861729079599595,RJ26GA9041
