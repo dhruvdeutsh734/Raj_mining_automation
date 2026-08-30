@@ -10,7 +10,7 @@ Devices=[]
 #     imei , vehicle_no ,_= row
 #     Devices.append((imei,vehicle_no))
 # print(Devices)
-Devices = []
+# Devices = []
 for row in sheet.iter_rows(min_row=2, values_only=True):
     imei, vehicle_no, _ = row
     if imei is None or vehicle_no is None:
@@ -60,9 +60,15 @@ with sync_playwright() as p:
         search = page.get_by_role("button", name="Search")
         search.click()
         no_data = page.get_by_text("NO DATA FOUND!!",exact=True)
+        try:
+            no_data.wait_for(state="visible",timeout=5000)
+            is_new = True
+        except:
+            is_new = False
+
         # no_data.wait_for_load_state("networkidle")
     
-        if no_data.is_visible():
+        if is_new:
             print("IMEI is not registered")
             # add_devc(imei)
             add_dvc = page.get_by_role("button", name="Add Device")
