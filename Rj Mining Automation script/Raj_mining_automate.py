@@ -6,11 +6,19 @@ import re
 workbook = xl.load_workbook("RAJ_MINING_DEVICES.xlsx")
 sheet = workbook["Sheet1"]
 Devices=[]
+# for row in sheet.iter_rows(min_row=2, values_only=True):
+#     imei , vehicle_no ,_= row
+#     Devices.append((imei,vehicle_no))
+# print(Devices)
+Devices = []
 for row in sheet.iter_rows(min_row=2, values_only=True):
-    imei , vehicle_no ,_= row
-    Devices.append((imei,vehicle_no))
+    imei, vehicle_no, _ = row
+    if imei is None or vehicle_no is None:
+        continue          # skip empty/deleted rows
+    Devices.append((imei, vehicle_no))
+
 print(Devices)
-input("entererr")
+input("Enter after Confirming Imei and Vehicle number")
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False)
     page = browser.new_page()
