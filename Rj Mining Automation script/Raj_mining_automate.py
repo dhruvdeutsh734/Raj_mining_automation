@@ -93,18 +93,18 @@ with sync_playwright() as p:
 
             test_req = page.locator('select[formcontrolname="requestNo"]')
             test_req.select_option(label="REQVEN-1-305")
-            input("Test request is selcted")
+            # input("Test request is selcted")
 
             manuf_name = page.locator('select[formcontrolname="manufacturerName"]')
             manuf_name.select_option(label="WATSOO EXPRESS PRIVATE LIMITED")
-            input("Manufacturer name is selected")
+            # input("Manufacturer name is selected")
             Enter_imei = page.get_by_role("textbox", name="Enter IMEI or Serial Number")
             Enter_imei.fill(imei)
             # Vin = input("Enter Vehicle Number:")
             Veh_no = page.get_by_placeholder("Enter vehicle registration")
             Veh_no.fill(vehicle_no)
             Verify = page.get_by_role("button", name="Verify").click()
-            page.wait_for_timeout(5000)
+            page.wait_for_timeout(2000)
             already_exit = page.get_by_text("Vehicle number already exist.")
             # if already_exit.is_visible():
             # print("Vehicle number already exist")
