@@ -146,7 +146,7 @@ if __name__ == "__main__":
     
     filename = input("Enter the path to your TXT file (default: devices.txt) > ").strip()
     if not filename:
-        filename = "devices.txt"
+        filename = "imeiVehicle.txt"
 
     devices = []
 
