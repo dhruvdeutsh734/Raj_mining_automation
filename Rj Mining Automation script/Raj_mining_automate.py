@@ -28,12 +28,12 @@ with sync_playwright() as p:
     def wait():
         page.wait_for_load_state("networkidle")
     ok()
-    Un = page.get_by_placeholder("Username")
-    Pw = page.get_by_placeholder("Password")
-    Un.fill("VENDOR00219")
-    Pw.fill("Watsoo@0909")
-    page.wait_for_timeout(4000)
     def login():
+        Un = page.get_by_placeholder("Username")
+        Pw = page.get_by_placeholder("Password")
+        Un.fill("VENDOR00219")
+        Pw.fill("Watsoo@0909")
+        page.wait_for_timeout(4000)
         page.get_by_role("button", name="Login").click()
     login()
     ok()
